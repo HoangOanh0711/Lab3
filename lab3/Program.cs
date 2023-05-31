@@ -21,7 +21,7 @@ namespace lab3
         static void Main()
         {
 
-            player.URL = @"G:\\Oanhhh\\c#\\image\\lab3\\sound\\nhacgame01.mp3";
+            //player.URL = @"G:\\Oanhhh\\c#\\image\\lab3\\sound\\nhacgame01.mp3";
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
