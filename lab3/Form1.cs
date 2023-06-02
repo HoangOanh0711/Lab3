@@ -51,5 +51,20 @@ namespace lab3
             }
         }
 
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Acheivement play = new Acheivement();
+            play.ShowDialog();
+            this.Close();
+        }
+
+        private void guna2Button3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Dictionary play = new Dictionary();
+            play.ShowDialog();
+            this.Close();
+        }
     }
 }

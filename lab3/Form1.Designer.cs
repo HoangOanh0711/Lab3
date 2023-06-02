@@ -81,6 +81,7 @@
             this.guna2Button2.Size = new System.Drawing.Size(286, 49);
             this.guna2Button2.TabIndex = 2;
             this.guna2Button2.Text = "Acheivement";
+            this.guna2Button2.Click += new System.EventHandler(this.guna2Button2_Click);
             // 
             // guna2Button3
             // 
@@ -98,6 +99,7 @@
             this.guna2Button3.Size = new System.Drawing.Size(286, 49);
             this.guna2Button3.TabIndex = 3;
             this.guna2Button3.Text = "Dictionary";
+            this.guna2Button3.Click += new System.EventHandler(this.guna2Button3_Click);
             // 
             // guna2CirclePictureBox6
             // 

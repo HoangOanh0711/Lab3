@@ -51,7 +51,6 @@
             this.guna2CirclePictureBox6 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.q_picturre = new Guna.UI2.WinForms.Guna2PictureBox();
             this.q_next = new Guna.UI2.WinForms.Guna2CirclePictureBox();
-            this.q_back = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.s_check5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.s_check2)).BeginInit();
@@ -61,7 +60,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.q_picturre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.q_next)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.q_back)).BeginInit();
             this.SuspendLayout();
             // 
             // label10
@@ -181,7 +179,7 @@
             this.q_btn1.TabIndex = 42;
             this.q_btn1.Tag = "1";
             this.q_btn1.Text = "guna2Button1";
-            this.q_btn1.Click += new System.EventHandler(this.checkAns);
+            this.q_btn1.Click += new System.EventHandler(this.clickBtn);
             // 
             // q_btn2
             // 
@@ -200,7 +198,7 @@
             this.q_btn2.TabIndex = 43;
             this.q_btn2.Tag = "2";
             this.q_btn2.Text = "guna2Button2";
-            this.q_btn2.Click += new System.EventHandler(this.checkAns);
+            this.q_btn2.Click += new System.EventHandler(this.clickBtn);
             // 
             // q_btn3
             // 
@@ -219,7 +217,7 @@
             this.q_btn3.TabIndex = 44;
             this.q_btn3.Tag = "3";
             this.q_btn3.Text = "guna2Button3";
-            this.q_btn3.Click += new System.EventHandler(this.checkAns);
+            this.q_btn3.Click += new System.EventHandler(this.clickBtn);
             // 
             // q_btn4
             // 
@@ -238,7 +236,7 @@
             this.q_btn4.TabIndex = 45;
             this.q_btn4.Tag = "4";
             this.q_btn4.Text = "guna2Button4";
-            this.q_btn4.Click += new System.EventHandler(this.checkAns);
+            this.q_btn4.Click += new System.EventHandler(this.clickBtn);
             // 
             // guna2CirclePictureBox1
             // 
@@ -252,6 +250,7 @@
             this.guna2CirclePictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.guna2CirclePictureBox1.TabIndex = 41;
             this.guna2CirclePictureBox1.TabStop = false;
+            this.guna2CirclePictureBox1.Click += new System.EventHandler(this.guna2CirclePictureBox1_Click);
             // 
             // s_check5
             // 
@@ -349,19 +348,7 @@
             this.q_next.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.q_next.TabIndex = 47;
             this.q_next.TabStop = false;
-            // 
-            // q_back
-            // 
-            this.q_back.BackColor = System.Drawing.Color.Transparent;
-            this.q_back.Image = global::lab3.Properties.Resources.arrow_back;
-            this.q_back.ImageRotate = 0F;
-            this.q_back.Location = new System.Drawing.Point(483, 251);
-            this.q_back.Name = "q_back";
-            this.q_back.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.q_back.Size = new System.Drawing.Size(40, 40);
-            this.q_back.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.q_back.TabIndex = 46;
-            this.q_back.TabStop = false;
+            this.q_next.Click += new System.EventHandler(this.q_next_Click);
             // 
             // Easy
             // 
@@ -370,7 +357,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(230)))), ((int)(((byte)(211)))));
             this.ClientSize = new System.Drawing.Size(1127, 673);
             this.Controls.Add(this.q_next);
-            this.Controls.Add(this.q_back);
             this.Controls.Add(this.q_btn4);
             this.Controls.Add(this.q_btn3);
             this.Controls.Add(this.q_btn2);
@@ -406,7 +392,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.q_picturre)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.q_next)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.q_back)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -437,6 +422,5 @@
         private Guna.UI2.WinForms.Guna2Button q_btn3;
         private Guna.UI2.WinForms.Guna2Button q_btn4;
         private Guna.UI2.WinForms.Guna2CirclePictureBox q_next;
-        private Guna.UI2.WinForms.Guna2CirclePictureBox q_back;
     }
 }

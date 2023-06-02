@@ -22,3 +22,6 @@ G:\Oanhhh\c#\lab3\lab3\obj\Debug\lab3.exe
 G:\Oanhhh\c#\lab3\lab3\obj\Debug\lab3.pdb
 G:\Oanhhh\c#\lab3\lab3\obj\Debug\lab3.Easy.resources
 G:\Oanhhh\c#\lab3\lab3\obj\Debug\lab3.Medium.resources
+G:\Oanhhh\c#\lab3\lab3\obj\Debug\lab3.Hard.resources
+G:\Oanhhh\c#\lab3\lab3\obj\Debug\lab3.Acheivement.resources
+G:\Oanhhh\c#\lab3\lab3\obj\Debug\lab3.Dictionary.resources

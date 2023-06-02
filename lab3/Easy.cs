@@ -1,4 +1,5 @@
 ﻿using Guna.UI2.WinForms;
+using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,7 +8,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Excel = Microsoft.Office.Interop.Excel.Application;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace lab3
 {
@@ -16,13 +19,18 @@ namespace lab3
         private WMPLib.WindowsMediaPlayer player = new WMPLib.WindowsMediaPlayer();
         private Boolean isPlay = true;
 
-        int score = 0;
-        int correctQuestion;
-        int questionNumber = 0;
+        int score = 0,correctQuestion,questionNumber = 1;
 
         List<int> randomNumbers;
 
-        string topic;
+        string topic, topic2;
+
+        Image check;
+
+        Excel excel = new Excel();
+        Workbook wb;
+        Worksheet ws;
+        Range range;
 
         public Easy(string topic)
         {
@@ -42,29 +50,33 @@ namespace lab3
 
         private void Easy_Load(object sender, EventArgs e)
         {
-            player.URL = @"G:\\Oanhhh\\c#\\image\\lab3\\sound\\nhacgame02.mp3";
+            //player.URL = @"G:\\Oanhhh\\c#\\image\\lab3\\sound\\nhacgame02.mp3";
             moNhac();
 
             var rnd = new Random();
 
             if (topic.Equals("color"))
             {
+                topic2 = "Color";
                 randomNumbers = Enumerable.Range(1, 31).OrderBy(x => rnd.Next()).Take(5).ToList();
             }
             else if (topic.Equals("animals"))
             {
+                topic2 = "Animal";
                 randomNumbers = Enumerable.Range(1, 32).OrderBy(x => rnd.Next()).Take(5).ToList();
             }
             else if (topic.Equals("fruit"))
             {
+                topic2 = "Fruit";
                 randomNumbers = Enumerable.Range(1, 32).OrderBy(x => rnd.Next()).Take(5).ToList();
             }
             else if (topic.Equals("job"))
             {
+                topic2 = "Job";
                 randomNumbers = Enumerable.Range(1, 41).OrderBy(x => rnd.Next()).Take(5).ToList();
             }
 
-            boDe(randomNumbers[questionNumber]);
+            boDe(randomNumbers[questionNumber-1]);
         }
 
         private void boDe(int soThuTuCauHoi)
@@ -526,26 +538,64 @@ namespace lab3
 
         }
 
-        private void checkAns(object sender, EventArgs e)
+        private void clickBtn(object sender, EventArgs e)
         {
             var senderObject = (Guna2Button)sender;
             int buttonTag = Convert.ToInt32(senderObject.Tag);
 
-            if (questionNumber < 3)
+            checkAns(buttonTag, senderObject);
+        }
+
+        private void checkAns(int buttonTag, Guna2Button senderObject)
+        {
+            if (questionNumber < 6)
             {
                 if (buttonTag == correctQuestion)
                 {
                     score += 2;
                     s_score.Text = Convert.ToString(score);
+                    anhDungSai(true);
+                    senderObject.FillColor = Color.FromArgb(71, 169, 146);
 
                 }
-                questionNumber++;
-                q_cau.Text = Convert.ToString(score + 1);
-                boDe(randomNumbers[questionNumber]);
+                else
+                {
+                    anhDungSai(false);
+                    senderObject.FillColor = Color.IndianRed;
+                }
             }
-
         }
 
+        private void anhDungSai(Boolean isTrue)
+        {
+            if (isTrue == true)
+            {
+                check = Image.FromFile("Resources/check.png");
+            }
+            else if (isTrue == false)
+            {
+                check = Image.FromFile("Resources/cancel.png");
+            }
+
+            switch (questionNumber)
+            {
+                case 1:
+                    s_check1.Image = check;
+                    break;
+                case 2:
+                    s_check2.Image = check;
+                    break;
+                case 3:
+                    s_check3.Image = check;
+                    break;
+                case 4:
+                    s_check4.Image = check;
+                    break;
+                case 5:
+                    s_check5.Image = check;
+                    break;
+            }
+        }
 
         private void guna2CirclePictureBox6_Click(object sender, EventArgs e)
         {
@@ -572,6 +622,44 @@ namespace lab3
             isPlay = true;
             player.controls.play();
             guna2CirclePictureBox6.Image = Image.FromFile("G:\\Oanhhh\\c#\\lab3\\lab3\\Resources\\volume.png");
+        }
+
+        private void guna2CirclePictureBox1_Click(object sender, EventArgs e)
+        {
+            wb = excel.Workbooks.Open(Program.filePathExcel);
+            ws = wb.Worksheets["Easy"];
+            range = ws.UsedRange;
+
+            int id = ws.UsedRange.Rows.Count + 1;
+            Range cells = ws.Range[$"A{id}:D{id}"];
+            string[] things = { $"{id}", topic2, Convert.ToString(score), DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") };
+            cells.set_Value(XlRangeValueDataType.xlRangeValueDefault, things);
+
+            wb.Save();
+            wb.Close();
+            excel.Quit();
+
+            tatNhac();
+            this.Hide();
+            Play play = new Play();
+            play.ShowDialog();
+            this.Close();
+
+        }
+
+        private void q_next_Click(object sender, EventArgs e)
+        {
+            if (questionNumber < 5)
+            {
+                questionNumber++;
+                q_cau.Text = Convert.ToString(questionNumber);
+                boDe(randomNumbers[questionNumber - 1]);
+
+                q_btn1.FillColor = Color.Transparent;
+                q_btn2.FillColor = Color.Transparent;
+                q_btn3.FillColor = Color.Transparent;
+                q_btn4.FillColor = Color.Transparent;
+            }
         }
     }
 }

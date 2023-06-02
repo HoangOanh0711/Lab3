@@ -13,6 +13,8 @@ namespace lab3
     {
         public static WMPLib.WindowsMediaPlayer player = new WMPLib.WindowsMediaPlayer();
         public static Boolean isPlay = true;
+        public static string filePathExcel = "G:\\Oanhhh\\c#\\lab3\\lab3\\Database.xlsx";
+
 
         /// <summary>
         /// The main entry point for the application.
@@ -21,7 +23,7 @@ namespace lab3
         static void Main()
         {
 
-            //player.URL = @"G:\\Oanhhh\\c#\\image\\lab3\\sound\\nhacgame01.mp3";
+            player.URL = @"G:\\Oanhhh\\c#\\image\\lab3\\sound\\nhacgame01.mp3";
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());

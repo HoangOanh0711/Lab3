@@ -39,7 +39,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.q_text = new Guna.UI2.WinForms.Guna2TextBox();
-            this.btn_back = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.btn_next = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.pic_5 = new Guna.UI2.WinForms.Guna2PictureBox();
@@ -51,7 +50,6 @@
             this.q_picture = new Guna.UI2.WinForms.Guna2PictureBox();
             this.q_btncheck = new Guna.UI2.WinForms.Guna2PictureBox();
             this.q_correctans = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_back)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_next)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_5)).BeginInit();
@@ -185,19 +183,6 @@
             this.q_text.SelectedText = "";
             this.q_text.Size = new System.Drawing.Size(457, 64);
             this.q_text.TabIndex = 17;
-            // 
-            // btn_back
-            // 
-            this.btn_back.BackColor = System.Drawing.Color.Transparent;
-            this.btn_back.Image = global::lab3.Properties.Resources.arrow_back;
-            this.btn_back.ImageRotate = 0F;
-            this.btn_back.Location = new System.Drawing.Point(448, 264);
-            this.btn_back.Name = "btn_back";
-            this.btn_back.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.btn_back.Size = new System.Drawing.Size(40, 40);
-            this.btn_back.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btn_back.TabIndex = 25;
-            this.btn_back.TabStop = false;
             // 
             // btn_next
             // 
@@ -343,7 +328,6 @@
             this.ClientSize = new System.Drawing.Size(1127, 673);
             this.Controls.Add(this.q_correctans);
             this.Controls.Add(this.q_btncheck);
-            this.Controls.Add(this.btn_back);
             this.Controls.Add(this.btn_next);
             this.Controls.Add(this.guna2CirclePictureBox1);
             this.Controls.Add(this.pic_5);
@@ -368,7 +352,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Game";
             this.Load += new System.EventHandler(this.Game_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.btn_back)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_next)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_5)).EndInit();
@@ -406,7 +389,6 @@
         private Guna.UI2.WinForms.Guna2PictureBox pic_5;
         private Guna.UI2.WinForms.Guna2CirclePictureBox guna2CirclePictureBox1;
         private Guna.UI2.WinForms.Guna2CirclePictureBox btn_next;
-        private Guna.UI2.WinForms.Guna2CirclePictureBox btn_back;
         private Guna.UI2.WinForms.Guna2PictureBox q_btncheck;
         private Guna.UI2.WinForms.Guna2CirclePictureBox guna2CirclePictureBox4;
         private System.Windows.Forms.Label q_correctans;
