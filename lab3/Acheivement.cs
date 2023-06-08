@@ -40,6 +40,11 @@ namespace lab3
 
         private void loadData(string level)
         {
+            while (datagridview.Rows.Count > 0)
+            {
+                datagridview.Rows.Remove(datagridview.Rows[0]);
+            }
+
             wb = excel.Workbooks.Open(Program.filePathExcel);
             ws = wb.Worksheets[$"{level}"];
             range = ws.UsedRange;
@@ -48,7 +53,7 @@ namespace lab3
 
             for (int row = 2; row <= range.Rows.Count; ++row)//đọc row hiện có trong Excel
             {
-                datagridview.Rows.Add(range.Cells[row, 2].Text, range.Cells[row, 3].Text, range.Cells[row, 4].Text);
+                datagridview.Rows.Add(range.Cells[row, 2].Text, Convert.ToInt32(range.Cells[row, 3].Text), range.Cells[row, 4].Text);
                 datagridview.Sort(datagridview.Columns[1], ListSortDirection.Descending);
             }
             wb.Close();
@@ -57,20 +62,12 @@ namespace lab3
 
         private void label1_Click(object sender, EventArgs e)
         {
-            while (datagridview.Rows.Count > 0)
-            {
-                datagridview.Rows.Remove(datagridview.Rows[0]);
-            }
             loadData("Easy");
 
         }
 
         private void label2_Click(object sender, EventArgs e)
         {
-            while (datagridview.Rows.Count > 0)
-            {
-                datagridview.Rows.Remove(datagridview.Rows[0]);
-            }
             loadData("Medium");
 
         }

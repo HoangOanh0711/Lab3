@@ -58,6 +58,7 @@
     <Compile Include="Acheivement.Designer.cs">
       <DependentUpon>Acheivement.cs</DependentUpon>
     </Compile>
+    <Compile Include="CountDownTimer.cs" />
     <Compile Include="dialog_option.cs">
       <SubType>Form</SubType>
     </Compile>

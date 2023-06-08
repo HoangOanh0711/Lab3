@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.q_next = new Guna.UI2.WinForms.Guna2CirclePictureBox();
-            this.q_back = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.s_check5 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.s_check2 = new Guna.UI2.WinForms.Guna2PictureBox();
@@ -38,7 +36,6 @@
             this.s_check4 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.s_check1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2CirclePictureBox6 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
-            this.q_picturre1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -49,13 +46,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.q_cau = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.q_picturre2 = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.q_picturre3 = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.q_picturre4 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.q_next)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.q_back)).BeginInit();
+            this.btn_next = new Guna.UI2.WinForms.Guna2CirclePictureBox();
+            this.q_text = new Guna.UI2.WinForms.Guna2TextBox();
+            this.q_picture = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.lb_time = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.s_check5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.s_check2)).BeginInit();
@@ -63,39 +58,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.s_check4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.s_check1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.q_picturre1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.q_picturre2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.q_picturre3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.q_picturre4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_next)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.q_picture)).BeginInit();
             this.SuspendLayout();
-            // 
-            // q_next
-            // 
-            this.q_next.BackColor = System.Drawing.Color.Transparent;
-            this.q_next.Image = global::lab3.Properties.Resources.arrow_forward;
-            this.q_next.ImageRotate = 0F;
-            this.q_next.Location = new System.Drawing.Point(1054, 354);
-            this.q_next.Name = "q_next";
-            this.q_next.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.q_next.Size = new System.Drawing.Size(40, 40);
-            this.q_next.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.q_next.TabIndex = 71;
-            this.q_next.TabStop = false;
-            this.q_next.Click += new System.EventHandler(this.q_next_Click);
-            // 
-            // q_back
-            // 
-            this.q_back.BackColor = System.Drawing.Color.Transparent;
-            this.q_back.Image = global::lab3.Properties.Resources.arrow_back;
-            this.q_back.ImageRotate = 0F;
-            this.q_back.Location = new System.Drawing.Point(503, 354);
-            this.q_back.Name = "q_back";
-            this.q_back.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.q_back.Size = new System.Drawing.Size(40, 40);
-            this.q_back.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.q_back.TabIndex = 70;
-            this.q_back.TabStop = false;
-            this.q_back.Click += new System.EventHandler(this.q_back_Click);
             // 
             // guna2CirclePictureBox1
             // 
@@ -183,16 +148,6 @@
             this.guna2CirclePictureBox6.TabIndex = 59;
             this.guna2CirclePictureBox6.TabStop = false;
             this.guna2CirclePictureBox6.Click += new System.EventHandler(this.guna2CirclePictureBox6_Click);
-            // 
-            // q_picturre1
-            // 
-            this.q_picturre1.ImageRotate = 0F;
-            this.q_picturre1.Location = new System.Drawing.Point(582, 173);
-            this.q_picturre1.Name = "q_picturre1";
-            this.q_picturre1.Size = new System.Drawing.Size(200, 200);
-            this.q_picturre1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.q_picturre1.TabIndex = 58;
-            this.q_picturre1.TabStop = false;
             // 
             // label10
             // 
@@ -294,51 +249,67 @@
             this.label1.TabIndex = 48;
             this.label1.Text = "Question:";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(747, 103);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 33);
-            this.label2.TabIndex = 72;
-            this.label2.Text = "label2";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // q_picturre2
-            // 
-            this.q_picturre2.ImageRotate = 0F;
-            this.q_picturre2.Location = new System.Drawing.Point(801, 173);
-            this.q_picturre2.Name = "q_picturre2";
-            this.q_picturre2.Size = new System.Drawing.Size(200, 200);
-            this.q_picturre2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.q_picturre2.TabIndex = 73;
-            this.q_picturre2.TabStop = false;
-            // 
-            // q_picturre3
-            // 
-            this.q_picturre3.ImageRotate = 0F;
-            this.q_picturre3.Location = new System.Drawing.Point(582, 388);
-            this.q_picturre3.Name = "q_picturre3";
-            this.q_picturre3.Size = new System.Drawing.Size(200, 200);
-            this.q_picturre3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.q_picturre3.TabIndex = 74;
-            this.q_picturre3.TabStop = false;
-            // 
-            // q_picturre4
-            // 
-            this.q_picturre4.ImageRotate = 0F;
-            this.q_picturre4.Location = new System.Drawing.Point(801, 388);
-            this.q_picturre4.Name = "q_picturre4";
-            this.q_picturre4.Size = new System.Drawing.Size(200, 200);
-            this.q_picturre4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.q_picturre4.TabIndex = 75;
-            this.q_picturre4.TabStop = false;
-            // 
             // timer1
             // 
             this.timer1.Enabled = true;
             this.timer1.Interval = 30000;
+            // 
+            // btn_next
+            // 
+            this.btn_next.BackColor = System.Drawing.Color.Transparent;
+            this.btn_next.Image = global::lab3.Properties.Resources.arrow_forward;
+            this.btn_next.ImageRotate = 0F;
+            this.btn_next.Location = new System.Drawing.Point(1043, 282);
+            this.btn_next.Name = "btn_next";
+            this.btn_next.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.btn_next.Size = new System.Drawing.Size(40, 40);
+            this.btn_next.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btn_next.TabIndex = 68;
+            this.btn_next.TabStop = false;
+            this.btn_next.Click += new System.EventHandler(this.q_next_Click);
+            // 
+            // q_text
+            // 
+            this.q_text.BorderColor = System.Drawing.Color.Black;
+            this.q_text.BorderThickness = 0;
+            this.q_text.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.q_text.DefaultText = "";
+            this.q_text.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.q_text.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.q_text.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.q_text.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.q_text.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.q_text.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.q_text.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.q_text.Location = new System.Drawing.Point(557, 513);
+            this.q_text.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.q_text.Name = "q_text";
+            this.q_text.PasswordChar = '\0';
+            this.q_text.PlaceholderText = "";
+            this.q_text.SelectedText = "";
+            this.q_text.Size = new System.Drawing.Size(457, 64);
+            this.q_text.TabIndex = 67;
+            // 
+            // q_picture
+            // 
+            this.q_picture.ImageRotate = 0F;
+            this.q_picture.Location = new System.Drawing.Point(557, 107);
+            this.q_picture.Name = "q_picture";
+            this.q_picture.Size = new System.Drawing.Size(457, 378);
+            this.q_picture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.q_picture.TabIndex = 66;
+            this.q_picture.TabStop = false;
+            // 
+            // lb_time
+            // 
+            this.lb_time.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lb_time.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_time.Location = new System.Drawing.Point(945, 31);
+            this.lb_time.Name = "lb_time";
+            this.lb_time.Size = new System.Drawing.Size(138, 41);
+            this.lb_time.TabIndex = 69;
+            this.lb_time.Text = "00:30";
+            this.lb_time.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Hard
             // 
@@ -346,12 +317,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(230)))), ((int)(((byte)(211)))));
             this.ClientSize = new System.Drawing.Size(1127, 673);
-            this.Controls.Add(this.q_picturre4);
-            this.Controls.Add(this.q_picturre3);
-            this.Controls.Add(this.q_picturre2);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.q_next);
-            this.Controls.Add(this.q_back);
+            this.Controls.Add(this.lb_time);
+            this.Controls.Add(this.btn_next);
+            this.Controls.Add(this.q_text);
+            this.Controls.Add(this.q_picture);
             this.Controls.Add(this.guna2CirclePictureBox1);
             this.Controls.Add(this.s_check5);
             this.Controls.Add(this.s_check2);
@@ -359,7 +328,6 @@
             this.Controls.Add(this.s_check4);
             this.Controls.Add(this.s_check1);
             this.Controls.Add(this.guna2CirclePictureBox6);
-            this.Controls.Add(this.q_picturre1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -374,8 +342,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Hard";
             this.Load += new System.EventHandler(this.Hard_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.q_next)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.q_back)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.s_check5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.s_check2)).EndInit();
@@ -383,19 +349,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.s_check4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.s_check1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.q_picturre1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.q_picturre2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.q_picturre3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.q_picturre4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_next)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.q_picture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private Guna.UI2.WinForms.Guna2CirclePictureBox q_next;
-        private Guna.UI2.WinForms.Guna2CirclePictureBox q_back;
         private Guna.UI2.WinForms.Guna2CirclePictureBox guna2CirclePictureBox1;
         private Guna.UI2.WinForms.Guna2PictureBox s_check5;
         private Guna.UI2.WinForms.Guna2PictureBox s_check2;
@@ -403,7 +364,6 @@
         private Guna.UI2.WinForms.Guna2PictureBox s_check4;
         private Guna.UI2.WinForms.Guna2PictureBox s_check1;
         private Guna.UI2.WinForms.Guna2CirclePictureBox guna2CirclePictureBox6;
-        private Guna.UI2.WinForms.Guna2PictureBox q_picturre1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
@@ -414,10 +374,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label q_cau;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private Guna.UI2.WinForms.Guna2PictureBox q_picturre2;
-        private Guna.UI2.WinForms.Guna2PictureBox q_picturre3;
-        private Guna.UI2.WinForms.Guna2PictureBox q_picturre4;
         private System.Windows.Forms.Timer timer1;
+        private Guna.UI2.WinForms.Guna2CirclePictureBox btn_next;
+        private Guna.UI2.WinForms.Guna2TextBox q_text;
+        private Guna.UI2.WinForms.Guna2PictureBox q_picture;
+        private System.Windows.Forms.Label lb_time;
     }
 }

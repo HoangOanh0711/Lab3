@@ -49,7 +49,7 @@ namespace lab3
 
         private void Game_Load(object sender, EventArgs e)
         {
-            //player.URL = @"G:\\Oanhhh\\c#\\image\\lab3\\sound\\nhacgame02.mp3";
+            player.URL = @"G:\\Oanhhh\\c#\\image\\lab3\\sound\\nhacgame02.mp3";
             moNhac();
 
             var rnd = new Random();

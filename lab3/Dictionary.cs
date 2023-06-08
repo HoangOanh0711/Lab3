@@ -114,18 +114,21 @@ namespace lab3
 
         private void loadData()
         {
+            while (guna2DataGridView1.Rows.Count > 1)
+            {
+                guna2DataGridView1.Rows.Remove(guna2DataGridView1.Rows[0]);
+            }
+
             wb = excel.Workbooks.Open(filePathExcel);
             ws = wb.Worksheets[topic];
             range = ws.UsedRange;
 
             for (int row = 1; row <= range.Rows.Count; ++row)//đọc row hiện có trong Excel
             {
-                guna2DataGridView1.Rows.Add(new Bitmap(range.Cells[row, 1].Text), range.Cells[row, 2].Text);
+                guna2DataGridView1.Rows.Add(new Bitmap(range.Cells[row, 1].Text), range.Cells[row, 2].Text, new Bitmap("G:\\Oanhhh\\c#\\image\\lab3\\delete.png"));
                 //guna2DataGridView1.Sort(guna2DataGridView1.Columns[2], ListSortDirection.Ascending);
             }
             wb.Close();
-
-
         }
 
         private void guna2Button3_Click(object sender, EventArgs e)
@@ -134,6 +137,7 @@ namespace lab3
             fileDialog.InitialDirectory = url;
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
+
                 tenImage = fileDialog.FileName;
                 String a = tenImage.Substring(tenImage.LastIndexOf("\\")+1);
                 text = a.Substring(0, a.LastIndexOf("."));
