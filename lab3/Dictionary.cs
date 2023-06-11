@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Excel = Microsoft.Office.Interop.Excel.Application;
 using System.Windows.Forms;
+using System.Security.Cryptography;
 
 namespace lab3
 {
@@ -24,7 +25,9 @@ namespace lab3
         Workbook wb;
         Worksheet ws;
         Range range;
-
+        int idSelectRow;
+        System.Data.DataTable dataTable = new System.Data.DataTable();
+        private readonly DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
         public Dictionary()
         {
             InitializeComponent();
@@ -55,6 +58,7 @@ namespace lab3
         private void Dictionary_Load(object sender, EventArgs e)
         {
             loadData();
+            guna2DataGridView1.Columns.Add(btn);
             if (Program.isPlay == true)
             {
                 Program.moNhac(guna2CirclePictureBox6);
@@ -125,38 +129,56 @@ namespace lab3
 
             for (int row = 1; row <= range.Rows.Count; ++row)//đọc row hiện có trong Excel
             {
-                guna2DataGridView1.Rows.Add(new Bitmap(range.Cells[row, 1].Text), range.Cells[row, 2].Text, new Bitmap("G:\\Oanhhh\\c#\\image\\lab3\\delete.png"));
-                //guna2DataGridView1.Sort(guna2DataGridView1.Columns[2], ListSortDirection.Ascending);
+                guna2DataGridView1.Rows.Add(new Bitmap(range.Cells[row, 1].Text), range.Cells[row, 2].Text);
+                
             }
             wb.Close();
         }
 
-        private void guna2Button3_Click(object sender, EventArgs e)
+        private void guna2DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            idSelectRow = e.RowIndex;
+        }
+
+        private void guna2PictureBox1_Click(object sender, EventArgs e)
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.InitialDirectory = url;
+            fileDialog.Filter = "Choose Image(*.jpg;*.png;*.gif)|*.jpg;*.png;*.gif";
+
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
-
                 tenImage = fileDialog.FileName;
-                String a = tenImage.Substring(tenImage.LastIndexOf("\\")+1);
-                text = a.Substring(0, a.LastIndexOf("."));
-
-                wb = excel.Workbooks.Open(filePathExcel);
-                ws = wb.Worksheets[topic];
-                range = ws.UsedRange;
-
-                int id = ws.UsedRange.Rows.Count + 1;
-                Range cells = ws.Range[$"A{id}:B{id}"];
-                string[] things = { tenImage,text };
-                cells.set_Value(XlRangeValueDataType.xlRangeValueDefault, things);
-
-                wb.Save();
-                wb.Close();
-                //excel.Quit();
-
-                guna2DataGridView1.Rows.Add(new Bitmap(tenImage), text);
+                guna2PictureBox1.Image = new Bitmap(tenImage);
             }
+
+        }
+
+        private void guna2Button3_Click(object sender, EventArgs e)
+        {
+            wb = excel.Workbooks.Open(filePathExcel);
+            ws = wb.Worksheets[topic];
+            range = ws.UsedRange;
+
+            int id = ws.UsedRange.Rows.Count + 1;
+            Range cells = ws.Range[$"A{id}:B{id}"];
+            string[] things = { tenImage, text_search.Text };
+            cells.set_Value(XlRangeValueDataType.xlRangeValueDefault, things);
+
+            wb.Save();
+            wb.Close();
+            //excel.Quit();
+
+            guna2DataGridView1.Rows.Add(new Bitmap(tenImage), text_search.Text);
+
+            text_search.Text = "";
+            guna2PictureBox1.Image = Image.FromFile("Resources/picture.png");
+        }
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            guna2DataGridView1.Rows.RemoveAt(idSelectRow);
+
         }
 
     }

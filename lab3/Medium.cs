@@ -123,25 +123,32 @@ namespace lab3
 
         private void guna2CirclePictureBox1_Click(object sender, EventArgs e)
         {
-            wb = excel.Workbooks.Open(Program.filePathExcel);
-            ws = wb.Worksheets["Medium"];
-            range = ws.UsedRange;
+            string message = "Do you want to exit game?";
+            string title = "Exit game";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(message, title, buttons);
+            if (result == DialogResult.Yes)
+            {
+                wb = excel.Workbooks.Open(Program.filePathExcel);
+                ws = wb.Worksheets["Medium"];
+                range = ws.UsedRange;
 
-            int id = ws.UsedRange.Rows.Count + 1;
-            Range cells = ws.Range[$"A{id}:D{id}"];
-            string[] things = { $"{id}", topic2, Convert.ToString(score), DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") };
-            cells.set_Value(XlRangeValueDataType.xlRangeValueDefault, things);
+                int id = ws.UsedRange.Rows.Count + 1;
+                Range cells = ws.Range[$"A{id}:D{id}"];
+                string[] things = { $"{id}", topic2, Convert.ToString(score), DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") };
+                cells.set_Value(XlRangeValueDataType.xlRangeValueDefault, things);
 
-            wb.Save();
-            wb.Close();
-            excel.Quit();
+                wb.Save();
+                wb.Close();
+                excel.Quit();
 
 
-            tatNhac();
-            this.Hide();
-            Play play = new Play();
-            play.ShowDialog();
-            this.Close();
+                tatNhac();
+                this.Hide();
+                Play play = new Play();
+                play.ShowDialog();
+                this.Close();
+            }
         }
 
         private void btn_next_Click(object sender, EventArgs e)

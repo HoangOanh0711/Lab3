@@ -1,4 +1,5 @@
 ﻿using Guna.UI2.WinForms;
+using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Excel = Microsoft.Office.Interop.Excel.Application;
 using System.Timers;
 using System.Windows.Forms;
 
@@ -26,6 +28,10 @@ namespace lab3
         Image check;
         CountDownTimer timer = new CountDownTimer();
 
+        Excel excel = new Excel();
+        Workbook wb;
+        Worksheet ws;
+        Range range;
 
         private void Hard_Load(object sender, EventArgs e)
         {
@@ -55,6 +61,7 @@ namespace lab3
                 randomNumbers = Enumerable.Range(1, 41).OrderBy(x => rnd.Next()).Take(5).ToList();
             }
 
+            timer.SetTime(0, 10);
             thoigian();
         }
 
@@ -73,19 +80,25 @@ namespace lab3
 
         private void thoigian()
         {
-            timer.SetTime(0, 31);
             timer.Start();
-            timer.TimeChanged += () => lb_time.Text = timer.TimeLeftStr;
-            boDe(randomNumbers[questionNumber - 1]);
-
-            timer.CountDownFinished += () =>
+            timer.TimeChanged += () =>
             {
-                questionNumber++;
-                q_cau.Text = questionNumber.ToString();
-                //timer.Restart();
-                thoigian();
-            };
+                lb_time.Text = timer.TimeLeftStr;
+                if (timer.TimeLeftStr == "00:00" & questionNumber < 5)
+                {
+                    checkAns();
+                    questionNumber++;
+                    q_cau.Text = questionNumber.ToString();
+                    timer.Reset();
+                    thoigian();
+                }
+                else if (questionNumber == 5)
+                {
+                    checkAns();
+                }
 
+            };
+            boDe(randomNumbers[questionNumber - 1]);
         }
         private void guna2CirclePictureBox6_Click(object sender, EventArgs e)
         {
@@ -102,13 +115,19 @@ namespace lab3
         private void q_next_Click(object sender, EventArgs e)
         {
             timer.Stop();
+            checkAns();
             if (questionNumber < 5)
             {
                 questionNumber++;
                 q_cau.Text = Convert.ToString(questionNumber);
+                
                 thoigian();
-
             }
+            else 
+            {
+                q_text.Text = "";
+            }
+
         }
 
         private void tatNhac()
@@ -116,6 +135,36 @@ namespace lab3
             isPlay = false;
             player.controls.stop();
             guna2CirclePictureBox6.Image = Image.FromFile("G:\\Oanhhh\\c#\\lab3\\lab3\\Resources\\volume-mute.png");
+        }
+
+        private void guna2CirclePictureBox1_Click(object sender, EventArgs e)
+        {
+            string message = "Do you want to exit game?";
+            string title = "Exit game";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(message, title, buttons);
+            if (result == DialogResult.Yes)
+            {
+                wb = excel.Workbooks.Open(Program.filePathExcel);
+                ws = wb.Worksheets["Hard"];
+                range = ws.UsedRange;
+
+                int id = ws.UsedRange.Rows.Count + 1;
+                Range cells = ws.Range[$"A{id}:D{id}"];
+                string[] things = { $"{id}", topic2, Convert.ToString(score), DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") };
+                cells.set_Value(XlRangeValueDataType.xlRangeValueDefault, things);
+
+                wb.Save();
+                wb.Close();
+                excel.Quit();
+
+
+                tatNhac();
+                this.Hide();
+                Play play = new Play();
+                play.ShowDialog();
+                this.Close();
+            }
         }
 
         private void checkAns()
@@ -173,6 +222,8 @@ namespace lab3
 
         private void boDe(int soThuTu)
         {
+            q_text.Text = "";
+
             if (topic.Equals("fruit"))
             {
                 switch (soThuTu)

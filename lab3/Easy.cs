@@ -31,6 +31,7 @@ namespace lab3
         Workbook wb;
         Worksheet ws;
         Range range;
+        bool ticked = false;
 
         public Easy(string topic)
         {
@@ -50,7 +51,7 @@ namespace lab3
 
         private void Easy_Load(object sender, EventArgs e)
         {
-            //player.URL = @"G:\\Oanhhh\\c#\\image\\lab3\\sound\\nhacgame02.mp3";
+            player.URL = @"G:\\Oanhhh\\c#\\image\\lab3\\sound\\nhacgame02.mp3";
             moNhac();
 
             var rnd = new Random();
@@ -504,7 +505,7 @@ namespace lab3
                         setQuestion(31, "detective", "scientist", "doctor", "farmer", 2);
                         break;
                     case 32:
-                        setQuestion(32, "miner", "sheriff", "", "hairdresser", 2);
+                        setQuestion(32, "miner", "sheriff", "doctor", "hairdresser", 2);
                         break;
                     case 33:
                         setQuestion(33, "doctor", "farmer", "soldier", "detective", 3);
@@ -540,10 +541,14 @@ namespace lab3
 
         private void clickBtn(object sender, EventArgs e)
         {
-            var senderObject = (Guna2Button)sender;
-            int buttonTag = Convert.ToInt32(senderObject.Tag);
+            if (ticked == false)
+            {
+                var senderObject = (Guna2Button)sender;
+                int buttonTag = Convert.ToInt32(senderObject.Tag);
 
-            checkAns(buttonTag, senderObject);
+                checkAns(buttonTag, senderObject);
+                ticked = true;
+            }
         }
 
         private void checkAns(int buttonTag, Guna2Button senderObject)
@@ -626,24 +631,32 @@ namespace lab3
 
         private void guna2CirclePictureBox1_Click(object sender, EventArgs e)
         {
-            wb = excel.Workbooks.Open(Program.filePathExcel);
-            ws = wb.Worksheets["Easy"];
-            range = ws.UsedRange;
+            string message = "Do you want to exit game?";
+            string title = "Exit game";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(message, title, buttons);
+            if (result == DialogResult.Yes)
+            {
+                wb = excel.Workbooks.Open(Program.filePathExcel);
+                ws = wb.Worksheets["Easy"];
+                range = ws.UsedRange;
 
-            int id = ws.UsedRange.Rows.Count + 1;
-            Range cells = ws.Range[$"A{id}:D{id}"];
-            string[] things = { $"{id}", topic2, Convert.ToString(score), DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") };
-            cells.set_Value(XlRangeValueDataType.xlRangeValueDefault, things);
+                int id = ws.UsedRange.Rows.Count + 1;
+                Range cells = ws.Range[$"A{id}:D{id}"];
+                string[] things = { $"{id}", topic2, Convert.ToString(score), DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") };
+                cells.set_Value(XlRangeValueDataType.xlRangeValueDefault, things);
 
-            wb.Save();
-            wb.Close();
-            excel.Quit();
+                wb.Save();
+                wb.Close();
+                excel.Quit();
 
-            tatNhac();
-            this.Hide();
-            Play play = new Play();
-            play.ShowDialog();
-            this.Close();
+                tatNhac();
+                this.Hide();
+                Play play = new Play();
+                play.ShowDialog();
+                this.Close();
+            }
+            
 
         }
 
@@ -659,6 +672,7 @@ namespace lab3
                 q_btn2.FillColor = Color.Transparent;
                 q_btn3.FillColor = Color.Transparent;
                 q_btn4.FillColor = Color.Transparent;
+                ticked = false;
             }
         }
     }
